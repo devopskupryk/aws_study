@@ -371,7 +371,7 @@ resource "aws_security_group" "vpc-ep" {
 
 resource "aws_key_pair" "ghost-ec2-pool" {
   key_name   = "ghost-ec2-pool"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC1p1VUv5pnl98VroHOQNJX0TT8g7yGfJCHZCuILAW+WmxFNPVJtPt4W9eV7jAba+C9kogL0NjdumW8lIGnA+2e4OeZ3GnRJNAENm1ds8dqmRO7dELpeX4oEvft2B0HqhxzdNaENZNoVOnk2KCE7zqzmmAbjsF2luIHs5oQwbQzWTkOmk2fdvhLoigFHWIqJLKnaHxFnjE3lH3wFHSBG0JXgDPg25thskHHHeBjQ5P67WFtjZEycOML/AgBsUiBXYEvgHIuWnAmgy6QVkLp9NJBqDE5HN80KgInYVSoEB/yAX021Kyez2FTU/E/4VT4HuOUos2pCnCGwgAIuRWqFcx1WkMcK4fzrQAcZhtUtW0or5JBNjnJ0ZQZPNUkpTyIWGI/X/I6FfFb4Bl5x+2jX9cfOPujDNSREnegvmxXDZ8NM0m0VbhgpjTJ1aLQNpTeXp+cdevNuj6mBGK+4xlEfIdmL261ZFXMd0aEMKivA7NU3af6f4yHE9IBua2BcqmKxRM= siarhei@dell"
+  public_key = var.public_key
 }
 
 resource "aws_iam_policy" "cloudx_ec2_policy" {
@@ -702,6 +702,12 @@ resource "aws_db_subnet_group" "mysql" {
 
 variable "db_password" {
   description = "Database administrator password"
+  type        = string
+  sensitive   = true
+}
+
+variable "public_key" {
+  description = "Instances ssh public key"
   type        = string
   sensitive   = true
 }
